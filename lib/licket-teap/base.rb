@@ -5,14 +5,14 @@ module LicketTeap
     base_uri 'http://public-api.ticketleap.com'
     format :json
 
-    attr_accessor :query
+    attr_accessor :options
 
     def initialize(api_key = nil)
-      @query = { :key => api_key }
+      @options = { :key => api_key }
     end
 
     def organization(org_slug)
-      Organization.new(org_slug, query)
+      Organization.new(org_slug, @options)
     end
   end
 end
