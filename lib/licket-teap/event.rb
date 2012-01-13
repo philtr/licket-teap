@@ -1,17 +1,24 @@
 module LicketTeap
   class Event
-    attr_accessor :event_slug
+    include HTTParty
 
-    def initialize(event_slug)
+    attr_accessor :org_slug, :event_slug, :query
+
+    def initialize(org_slug, event_slug, query = {})
+      self.class.base_uri "#{ Organization.base_uri }/#{org_slug}/events"
+
+      @org_slug = org_slug
       @event_slug = event_slug
-      puts "I am an event"
+      @query ||= {}
+      @query = query.merge @query
     end
 
-    def performances
+    def details
+      self.class.get("/#{ @event_slug }", { :query => @query })
     end
 
     def performance(perf_slug)
-      Performance.new(perf_slug)
+      Performance.new(org_slug, event_slug, perf_slug, @query)
     end
   end
 end
