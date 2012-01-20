@@ -1,6 +1,6 @@
 module LicketTeap
   class Base
-    include HTTParty
+    include ::HTTParty
 
     base_uri 'http://public-api.ticketleap.com'
     format :json
