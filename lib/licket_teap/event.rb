@@ -1,8 +1,8 @@
 module LicketTeap
   class Event
     include HTTParty
-    base_uri "#{ Organization.base_uri }/#{org_slug}/events"
-    
+    base_uri "#{ Organization.base_uri }/events"
+
     attr_accessor :org_slug, :event_slug, :options
 
     def initialize(org_slug, event_slug, options = {})
