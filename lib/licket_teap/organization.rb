@@ -16,12 +16,12 @@ module LicketTeap
     end
 
     def event(event_slug)
-      Event.new(org_slug, event_slug, @options)
+      Event.new(@org_slug, event_slug, @options)
     end
 
     def find_events_by_date(after, before = nil)
       before = after.advance(:days => 1) if before.nil?
-      options = { 
+      options = {
         :dates_after => after.strftime("%Y-%m-%d"),
         :dates_before => before.strftime("%Y-%m-%d")
       }.merge @options
