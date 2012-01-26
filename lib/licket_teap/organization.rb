@@ -37,8 +37,8 @@ module LicketTeap
     def after_and_before(after, before = nil)
       before = after.advance(:days => 1) if before.nil?
       options = {
-        :dates_after => after.strftime("%Y-%m-%d%H%M"),
-        :dates_before => before.strftime("%Y-%m-%d%H%M")
+        :dates_after => after.strftime("%Y-%m-%dT%H%M"),
+        :dates_before => before.strftime("%Y-%m-%dT%H%M")
       }
       [after, before, options.merge(@options)]
     end
